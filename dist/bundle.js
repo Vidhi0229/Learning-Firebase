@@ -37814,6 +37814,11 @@ loginForm.addEventListener('submit', e => {
     console.log(err.message);
   });
 });
+
+// subscribing to auth changes
+(0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(auth, user => {
+  console.log('User status changed', user);
+});
 })();
 
 /******/ })()
