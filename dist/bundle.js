@@ -37778,6 +37778,20 @@ updateForm.addEventListener('submit', e => {
     updateForm.reset();
   });
 });
+
+// signing users up
+const signupForm = document.querySelector('.signup');
+signupForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const email = signupForm.email.value;
+  const password = signupForm.password.value;
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.createUserWithEmailAndPassword)(auth, email, password).then(cred => {
+    console.log("user created: ", cred.user);
+    signupForm.reset();
+  }).catch(err => {
+    console.log(err.message);
+  });
+});
 })();
 
 /******/ })()
