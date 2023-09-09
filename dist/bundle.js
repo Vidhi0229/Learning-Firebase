@@ -26517,9 +26517,22 @@ const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
 // collection ref
 const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, 'books');
 
-// get collection data
-(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDocs)(colRef).then(snapshot => {
-  //console.log(snapshot.docs)
+// get collection data (first import getDocs above from firestore)
+// getDocs(colRef)
+//     .then((snapshot) => {
+//         //console.log(snapshot.docs)
+//         let books = []
+//         snapshot.docs.forEach((doc) => {
+//             books.push({ ...doc.data(), id: doc.id })
+//         })
+//         console.log(books)
+//     })
+//     .catch(err => {
+//         console.log(err.message)
+//     })
+
+// real time collection data
+(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(colRef, snapshot => {
   let books = [];
   snapshot.docs.forEach(doc => {
     books.push({
@@ -26528,8 +26541,6 @@ const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db
     });
   });
   console.log(books);
-}).catch(err => {
-  console.log(err.message);
 });
 
 // adding documents
