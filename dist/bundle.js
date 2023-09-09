@@ -26577,6 +26577,16 @@ const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'book
 (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(docRef, doc => {
   console.log(doc.data(), doc.id);
 });
+const updateForm = document.querySelector('.update');
+updateForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'books', updateForm.id.value);
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.updateDoc)(docRef, {
+    title: 'updated title'
+  }).then(() => {
+    updateForm.reset();
+  });
+});
 })();
 
 /******/ })()
