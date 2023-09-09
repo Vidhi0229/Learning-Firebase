@@ -26518,7 +26518,7 @@ const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
 const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, 'books');
 
 // queries
-const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)(colRef, (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("author", "==", "E.M. Forster"));
+const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)(colRef, (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.orderBy)('createdAt'));
 
 // get collection data (first import getDocs above from firestore)
 // getDocs(colRef)
@@ -26552,7 +26552,8 @@ addBookForm.addEventListener('submit', e => {
   e.preventDefault();
   (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.addDoc)(colRef, {
     title: addBookForm.title.value,
-    author: addBookForm.author.value
+    author: addBookForm.author.value,
+    createdAt: (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.serverTimestamp)()
   }).then(() => {
     addBookForm.reset();
   });
