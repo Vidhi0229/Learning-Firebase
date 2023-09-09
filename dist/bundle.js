@@ -26531,6 +26531,28 @@ const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db
 }).catch(err => {
   console.log(err.message);
 });
+
+// adding documents
+const addBookForm = document.querySelector('.add');
+addBookForm.addEventListener('submit', e => {
+  e.preventDefault();
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.addDoc)(colRef, {
+    title: addBookForm.title.value,
+    author: addBookForm.author.value
+  }).then(() => {
+    addBookForm.reset();
+  });
+});
+
+//deleting documents
+const deleteBookForm = document.querySelector('.delete');
+deleteBookForm.addEventListener('submit', e => {
+  e.preventDefault();
+  const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'books', deleteBookForm.id.value);
+  (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.deleteDoc)(docRef).then(() => {
+    deleteBookForm.reset();
+  });
+});
 })();
 
 /******/ })()
