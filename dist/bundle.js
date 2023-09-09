@@ -37726,7 +37726,7 @@ const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)(colRef, (0,f
 //     })
 
 // real time collection data
-(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, snapshot => {
+const unsubCol = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, snapshot => {
   let books = [];
   snapshot.docs.forEach(doc => {
     books.push({
@@ -37765,7 +37765,7 @@ const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'book
 (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(docRef).then(doc => {
   console.log(doc.data(), doc.id);
 });
-(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(docRef, doc => {
+const unsubDoc = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(docRef, doc => {
   console.log(doc.data(), doc.id);
 });
 const updateForm = document.querySelector('.update');
@@ -37816,8 +37816,17 @@ loginForm.addEventListener('submit', e => {
 });
 
 // subscribing to auth changes
-(0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(auth, user => {
+const unsubAuth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.onAuthStateChanged)(auth, user => {
   console.log('User status changed', user);
+});
+
+// unsubscribing from changes (auth & db)
+const unsubButton = document.querySelector('.unsub');
+unsubButton.addEventListener('click', () => {
+  console.log("unsubcribing");
+  unsubCol();
+  unsubDoc();
+  unsubAuth();
 });
 })();
 
