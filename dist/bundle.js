@@ -26568,6 +26568,15 @@ deleteBookForm.addEventListener('submit', e => {
     deleteBookForm.reset();
   });
 });
+
+// get a single document
+const docRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, 'books', 'GxLEavjLqvGuwGRWDP0h');
+(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(docRef).then(doc => {
+  console.log(doc.data(), doc.id);
+});
+(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(docRef, doc => {
+  console.log(doc.data(), doc.id);
+});
 })();
 
 /******/ })()
