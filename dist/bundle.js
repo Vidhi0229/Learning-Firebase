@@ -37805,6 +37805,14 @@ logoutButton.addEventListener('click', () => {
 const loginForm = document.querySelector('.login');
 loginForm.addEventListener('submit', e => {
   e.preventDefault();
+  const email = loginForm.email.value;
+  const password = loginForm.password.value;
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signInWithEmailAndPassword)(auth, email, password).then(cred => {
+    console.log('user logged in:', cred.user);
+    loginForm.reset();
+  }).catch(err => {
+    console.log(err.message);
+  });
 });
 })();
 

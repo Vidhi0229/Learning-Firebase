@@ -11,7 +11,7 @@ import {
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signOut
+    signOut, signInWithEmailAndPassword
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -145,4 +145,15 @@ logoutButton.addEventListener('click', () => {
 const loginForm = document.querySelector('.login')
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    const email = loginForm.email.value
+    const password = loginForm.password.value
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+            console.log('user logged in:', cred.user);
+            loginForm.reset()
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
 })
