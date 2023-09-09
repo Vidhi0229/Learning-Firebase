@@ -26517,6 +26517,9 @@ const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
 // collection ref
 const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, 'books');
 
+// queries
+const q = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)(colRef, (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("author", "==", "E.M. Forster"));
+
 // get collection data (first import getDocs above from firestore)
 // getDocs(colRef)
 //     .then((snapshot) => {
@@ -26532,7 +26535,7 @@ const colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db
 //     })
 
 // real time collection data
-(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(colRef, snapshot => {
+(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.onSnapshot)(q, snapshot => {
   let books = [];
   snapshot.docs.forEach(doc => {
     books.push({

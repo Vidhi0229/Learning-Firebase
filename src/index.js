@@ -2,7 +2,8 @@ import {initializeApp} from 'firebase/app'
 import {
     collection,
     onSnapshot,
-    getFirestore, addDoc, deleteDoc, doc
+    getFirestore, addDoc, deleteDoc, doc,
+    query, where
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -23,6 +24,9 @@ const db = getFirestore()
 // collection ref
 const colRef = collection(db, 'books')
 
+// queries
+const q = query(colRef, where("author", "==", "E.M. Forster"))
+
 // get collection data (first import getDocs above from firestore)
 // getDocs(colRef)
 //     .then((snapshot) => {
@@ -38,7 +42,7 @@ const colRef = collection(db, 'books')
 //     })
 
 // real time collection data
-onSnapshot(colRef, (snapshot) => {
+onSnapshot(q, (snapshot) => {
     let books = []
     snapshot.docs.forEach((doc) => {
         books.push({ ...doc.data(), id: doc.id })
