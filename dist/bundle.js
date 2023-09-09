@@ -37792,6 +37792,20 @@ signupForm.addEventListener('submit', e => {
     console.log(err.message);
   });
 });
+
+// logging in and out
+const logoutButton = document.querySelector('.logout');
+logoutButton.addEventListener('click', () => {
+  (0,firebase_auth__WEBPACK_IMPORTED_MODULE_2__.signOut)(auth).then(() => {
+    console.log('the user signed out');
+  }).catch(err => {
+    console.log(err.message);
+  });
+});
+const loginForm = document.querySelector('.login');
+loginForm.addEventListener('submit', e => {
+  e.preventDefault();
+});
 })();
 
 /******/ })()
